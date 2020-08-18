@@ -1,3 +1,19 @@
 To get started run the main file in ruby.
 
 'ruby main.rb'
+
+
+Testing Data
+----------------------------------------------------------------
+Command                              Expected Outcome
+----------------------------------------------------------------
+1. ROBOT1: MOVE                  =>  Robot does not yet exist.
+2. ROBOT1: PLACE 1,7,NORTH       =>  Out of bounds placement.
+3. ROBOT1: PLACE 1,1,NORTH       =>  Created successfully.
+4. ROBOT2: PLACE 1,1,NORTH       =>  Cannot place a robot on top of another.
+5. ROBOT2: PLACE 1,2,NORTH       =>  Created successfully.
+6. ROBOT1: MOVE                  =>  Cannot move onto occupied location.
+7. ROBOT1: LEFT                  =>  Successful rotate, facing west.
+8. ROBOT1: MOVE                  =>  Successful move.
+9. ROBOT1: REPORT                =>  Check that facing and location is correct. Should be 0,1,WEST.
+10. ROBOT1: MOVE                 =>  Cannot move out of bounds.

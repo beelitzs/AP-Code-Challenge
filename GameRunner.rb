@@ -12,7 +12,6 @@ class GameRunner
   
     @robots.each do |robot|
       if robot.name == name
-        puts 'Robot name already exist. Please try another.'
         return true
       end
     end
@@ -82,7 +81,7 @@ class GameRunner
   end
 
   def valid_space?(x, y)
-    if x.to_i < 0 || x.to_i > 6 || y.to_i < 0 || x.to_i > 6
+    if x.to_i < 0 || x.to_i > 5 || y.to_i < 0 || y.to_i > 5
       puts 'Robot cannot leave the allowable area.'
       return false
     end
