@@ -43,8 +43,8 @@ class GameRunner
 
   def parse_place_instruction(bot_name, instruction)
     separated = instruction[5..-1].split(',')
-    x_pos = separated[0].strip
-    y_pos = separated[1].strip
+    x_pos = separated[0].strip.to_i
+    y_pos = separated[1].strip.to_i
     facing = get_facing(separated[2].downcase.strip)
     place(bot_name.downcase, x_pos, y_pos, facing)
   end
@@ -76,7 +76,6 @@ class GameRunner
 
   def can_move?(x, y)
     return true if valid_space?(x, y) && !collision?(x, y)
-    puts "CAN MOVE!"
     false
   end
 
@@ -89,16 +88,29 @@ class GameRunner
   end
 
   def collision?(x, y)
-    return unless @robots
+    return false unless @robots
     @robots.each do |robot|
       if robot.x_pos == x && robot.y_pos == y
         puts 'Cannot move there, another robot is in that location.'
         return true
       end
     end
+    false
+  end
+
+  def name_taken?(name)
+    return false unless @robots
+    @robots.each do |robot|
+      if robot.name == name
+        puts 'That name is already in use by another robot.'
+        return true
+      end
+    end
+    false
   end
 
   def place(name, x_pos, y_pos, facing)
+    return if name_taken?(name)
     return unless can_move?(x_pos, y_pos)
     robot = Robot.new(name, x_pos.to_i, y_pos.to_i, facing)
     if @robots
@@ -126,7 +138,7 @@ class GameRunner
     x_pos = calculate_move_x(bot)
     y_pos = calculate_move_y(bot)
     return unless can_move?(x_pos, y_pos)
-    bot.move(x, y)
+    bot.move(x_pos, y_pos)
   end
 
   def left(name)

@@ -14,17 +14,17 @@ class Robot
   end
 
   def left
-    @facing = 'west' if @facing == 'north'
-    @facing = 'south' if @facing == 'west'
-    @facing = 'east' if @facing == 'south'
-    @facing = 'north' if @facing == 'east'
+    return @facing = 'west' if @facing == 'north'
+    return @facing = 'south' if @facing == 'west'
+    return @facing = 'east' if @facing == 'south'
+    return @facing = 'north' if @facing == 'east'
   end
 
   def right
-    @facing = 'east' if @facing == 'north'
-    @facing = 'north' if @facing == 'west'
-    @facing = 'west' if @facing == 'south'
-    @facing = 'south' if @facing == 'east'
+    return @facing = 'east' if @facing == 'north'
+    return @facing = 'north' if @facing == 'west'
+    return @facing = 'west' if @facing == 'south'
+    return @facing = 'south' if @facing == 'east'
   end
 
   def report
