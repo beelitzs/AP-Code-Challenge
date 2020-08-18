@@ -18,6 +18,7 @@ end
 def run_instruction(bot_name, instruction)
   cleaned_instruction = instruction.downcase.strip
   return unless @game_runner.valid_instruction?(cleaned_instruction)
+  return puts 'Robot doesnt exist yet, place it first.' unless @game_runner.bot_exists?(bot_name) || cleaned_instruction.include?('place')
 
   @game_runner.parse_instruction(bot_name, cleaned_instruction.downcase)
 end

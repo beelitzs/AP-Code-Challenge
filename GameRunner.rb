@@ -24,6 +24,7 @@ class GameRunner
     %w[place report move left right].each do |valid_type|
       return true if valid_type == type
     end
+    puts 'Instruction is invalid, try again.'
   end
 
   def parse_instruction(bot_name, instruction)
@@ -69,6 +70,7 @@ class GameRunner
   end
 
   def get_bot_by_name(name)
+    return unless @robots
     @robots.each do |robot|
       return robot if robot.name == name
     end
